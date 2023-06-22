@@ -1,8 +1,15 @@
 pub struct Bit {
-    pub value: bool,
+    value: bool,
 }
 
 impl Bit {
+    pub fn from(value: u8) -> Bit {
+        match value {
+            0 => Bit { value: false },
+            1 => Bit { value: true },
+            _ => panic!("out of bounds input - must be 0 or 1"),
+        }
+    }
     pub fn to_string(&self) -> String {
         match self.value {
             true => String::from("1"),
