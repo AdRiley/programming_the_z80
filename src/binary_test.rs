@@ -87,4 +87,11 @@ mod tests {
         assert_eq!(result.to_string(), "10011");
         assert_eq!(result.to_decimal(), 19);
     }
+    ///////////// add tests ///////////////////
+    #[test]
+    fn test_add_10_and_11() {
+        let binary1 = Binary::from("10");
+        let result = binary1.add(Binary::from("01"));
+        assert_eq!(result.to_string(), "11");
+    }
 }

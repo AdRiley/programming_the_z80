@@ -40,7 +40,29 @@ impl Binary {
         for b in self.value.iter().rev() {
             result += &b.to_string();
         }
-
         result
+    }
+    pub fn add(&self, other: Binary) -> Binary {
+        let mut result = Vec::new();
+        let mut carry = Bit::Zero;
+        let mut answer: Bit;
+        for it in self.value.iter().zip(other.value.iter()) {
+            let (bit1, bit2) = it;
+            (carry, answer) = match (bit1, bit2, &carry) {
+                (Bit::Zero, Bit::Zero, Bit::Zero) => (Bit::Zero, Bit::Zero),
+                (Bit::Zero, Bit::Zero, Bit::One) => (Bit::Zero, Bit::One),
+                (Bit::Zero, Bit::One, Bit::Zero) => (Bit::Zero, Bit::One),
+                (Bit::One, Bit::Zero, Bit::Zero) => (Bit::Zero, Bit::One),
+                (Bit::Zero, Bit::One, Bit::One) => (Bit::One, Bit::Zero),
+                (Bit::One, Bit::One, Bit::Zero) => (Bit::One, Bit::Zero),
+                (Bit::One, Bit::Zero, Bit::One) => (Bit::One, Bit::Zero),
+                (Bit::One, Bit::One, Bit::One) => (Bit::One, Bit::Zero),
+            };
+            result.push(answer);
+        }
+        if carry == Bit::One {
+            result.push(carry);
+        }
+        Binary { value: result }
     }
 }

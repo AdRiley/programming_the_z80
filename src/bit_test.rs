@@ -32,6 +32,7 @@ mod tests {
         let _result = Bit::from('x');
     }
     ///////////// add tests ///////////////////
+    // p.22
     #[test]
     fn test_zero_bit_plus_zero_bit_is_zero() {
         let false_bit1 = Bit::Zero;
