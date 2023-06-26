@@ -88,10 +88,19 @@ mod tests {
         assert_eq!(result.to_decimal(), 19);
     }
     ///////////// add tests ///////////////////
+    // p.22 example:1
     #[test]
     fn test_add_10_and_11() {
         let binary1 = Binary::from("10");
         let result = binary1.add(Binary::from("01"));
         assert_eq!(result.to_string(), "11");
+    }
+    // p.23 exercise 1.4
+    #[test]
+    fn test_add_5_and_10() {
+        let binary1 = Binary::from_decimal(5);
+        let binary2 = Binary::from_decimal(10);
+        let result = binary2.add(binary1);
+        assert_eq!(result.to_decimal(), 15);
     }
 }

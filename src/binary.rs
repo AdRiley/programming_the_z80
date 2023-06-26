@@ -48,21 +48,36 @@ impl Binary {
         let mut answer: Bit;
         for it in self.value.iter().zip(other.value.iter()) {
             let (bit1, bit2) = it;
-            (carry, answer) = match (bit1, bit2, &carry) {
-                (Bit::Zero, Bit::Zero, Bit::Zero) => (Bit::Zero, Bit::Zero),
-                (Bit::Zero, Bit::Zero, Bit::One) => (Bit::Zero, Bit::One),
-                (Bit::Zero, Bit::One, Bit::Zero) => (Bit::Zero, Bit::One),
-                (Bit::One, Bit::Zero, Bit::Zero) => (Bit::Zero, Bit::One),
-                (Bit::Zero, Bit::One, Bit::One) => (Bit::One, Bit::Zero),
-                (Bit::One, Bit::One, Bit::Zero) => (Bit::One, Bit::Zero),
-                (Bit::One, Bit::Zero, Bit::One) => (Bit::One, Bit::Zero),
-                (Bit::One, Bit::One, Bit::One) => (Bit::One, Bit::Zero),
-            };
+            (carry, answer) = add_three_bits(bit1, bit2, &carry);
             result.push(answer);
+        }
+        if self.value.len() > other.value.len() {
+            for i in other.value.len()..self.value.len() {
+                (carry, answer) = add_three_bits(&Bit::Zero, &self.value[i], &carry);
+                result.push(answer);
+            }
+        } else if self.value.len() < other.value.len() {
+            for i in self.value.len()..other.value.len() {
+                (carry, answer) = add_three_bits(&Bit::Zero, &other.value[i], &carry);
+                result.push(answer);
+            }
         }
         if carry == Bit::One {
             result.push(carry);
         }
         Binary { value: result }
+    }
+}
+
+fn add_three_bits(bit1: &Bit, bit2: &Bit, bit3: &Bit) -> (Bit, Bit) {
+    match (bit1, bit2, bit3) {
+        (Bit::Zero, Bit::Zero, Bit::Zero) => (Bit::Zero, Bit::Zero),
+        (Bit::Zero, Bit::Zero, Bit::One) => (Bit::Zero, Bit::One),
+        (Bit::Zero, Bit::One, Bit::Zero) => (Bit::Zero, Bit::One),
+        (Bit::One, Bit::Zero, Bit::Zero) => (Bit::Zero, Bit::One),
+        (Bit::Zero, Bit::One, Bit::One) => (Bit::One, Bit::Zero),
+        (Bit::One, Bit::One, Bit::Zero) => (Bit::One, Bit::Zero),
+        (Bit::One, Bit::Zero, Bit::One) => (Bit::One, Bit::Zero),
+        (Bit::One, Bit::One, Bit::One) => (Bit::One, Bit::One),
     }
 }
