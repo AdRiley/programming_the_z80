@@ -103,4 +103,25 @@ mod tests {
         let result = binary2.add(binary1);
         assert_eq!(result.to_decimal(), 15);
     }
+    // p.23 example:2
+    #[test]
+    fn test_add_11_and_01() {
+        let binary1 = Binary::from("11");
+        let result = binary1.add(Binary::from("01"));
+        assert_eq!(result.to_string(), "100");
+    }
+    // p.23 example:3
+    #[test]
+    fn test_add_111_and_11() {
+        let binary1 = Binary::from("111");
+        let result = binary1.add(Binary::from("11"));
+        assert_eq!(result.to_string(), "1010");
+    }
+    // p.23 exercise 1.5
+    #[test]
+    fn test_add_1111_and_1() {
+        let binary1 = Binary::from("1111");
+        let result = binary1.add(Binary::from("1"));
+        assert_eq!(result.to_string(), "10000");
+    }
 }
