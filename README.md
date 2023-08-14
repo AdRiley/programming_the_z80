@@ -16,4 +16,4 @@ Now obviously I am re-inventing things that the Rust language already supports n
 
 I am working though the pdf version of the book linked above and will reference pages and examples from the book in the unit tests that implement that section, in case any one wants to follow along
 
-- Adam Riley
+Adam Riley
