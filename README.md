@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/AdRiley/programming_the_z80/branch/main/graph/badge.svg?token=2O0TVLZRDI)](https://codecov.io/gh/AdRiley/programming_the_z80)
+
 Never.
 Stop.
 Learning.
