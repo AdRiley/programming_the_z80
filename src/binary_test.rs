@@ -130,4 +130,16 @@ mod tests {
         let result = binary1.add(Binary::from("1111"));
         assert_eq!(result.to_string(), "10000");
     }
+    #[test]
+    fn test_add_0_and_10() {
+        let binary1 = Binary::from("0");
+        let result = binary1.add(Binary::from("10"));
+        assert_eq!(result.to_string(), "10");
+    }
+    #[test]
+    fn test_add_1_and_1() {
+        let binary1 = Binary::from("1");
+        let result = binary1.add(Binary::from("1"));
+        assert_eq!(result.to_string(), "10");
+    }
 }
