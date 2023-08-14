@@ -137,9 +137,9 @@ mod tests {
         assert_eq!(result.to_string(), "10");
     }
     #[test]
-    fn test_add_1_and_1() {
-        let binary1 = Binary::from("1");
-        let result = binary1.add(Binary::from("1"));
-        assert_eq!(result.to_string(), "10");
+    fn test_add_101_and_101() {
+        let binary1 = Binary::from("101");
+        let result = binary1.add(Binary::from("101"));
+        assert_eq!(result.to_string(), "1010");
     }
 }
